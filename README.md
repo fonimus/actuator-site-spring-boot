@@ -41,8 +41,6 @@ actuator:
     resource-path: classpath:/webjars/actuator-site/
 ```
 
-**Note:**: In order to get site, you need to have corresponding dependency **actuator-site-spring-boot-[type]**
-
 ## Sample
 
 Sample with provided configuration [application.yml](./sample/src/main/resources/application.yml). 
