@@ -8,6 +8,8 @@ ApiService.install = function (Vue) {
     if (demo === 'demo') {
         baseUrl = 'actuator/';
         actuatorPath = 'actuator';
+    } else if (env === 'development') {
+        baseUrl = '/actuator'
     }
     Vue.prototype.$api = {
         actuator() {

@@ -17,7 +17,7 @@
 
                 <b-navbar-nav>
 
-                    <b-nav-item-dropdown>
+                    <b-nav-item-dropdown v-if="paths.length > 0">
                         <template slot="button-content">
                             <fa icon="cog" class="space"/>
                             <span>{{$t('header.admin')}}</span>
@@ -26,9 +26,11 @@
                             {{$t('header.'+path)}}
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+
                 </b-navbar-nav>
 
                 <b-navbar-nav class="ml-auto">
+
                     <b-nav-item-dropdown right>
                         <template slot="button-content">
                             <fa icon="flag" class="space"/>
@@ -51,6 +53,7 @@
                             </span>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+
                 </b-navbar-nav>
 
             </b-collapse>

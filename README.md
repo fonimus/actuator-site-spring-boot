@@ -57,3 +57,15 @@ Sample with provided configuration [application.yml](./sample/src/main/resources
     ```  
     
 1. Go to http://localhost:8080/actuator/site/ , with `user:password` authentication
+
+## Release note
+
+### 0.2.0
+
+* Fix project without actuator dependency failure
+* Fix health without details error
+* Display home message if not endpoint available
+
+### 0.1.0
+
+* First release

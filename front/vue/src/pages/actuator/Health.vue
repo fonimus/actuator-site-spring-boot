@@ -11,6 +11,7 @@
         <div class="card-body">
             <spinner :show="loading"></spinner>
             <div v-if="!loading">
+                <p v-if="noDetails" class="alert alert-warning" v-html="$t('health.no-details')"></p>
                 <p class="alert alert-primary">
                     <span v-t="'filter.statuses'"></span>
                     <span class="space badge pointer" @click="filter('all')"
@@ -45,7 +46,8 @@
                 errorMessage: this.$t('error.get.health'),
                 statuses: [],
                 statusFilter: null,
-                columns: ['name', 'status', 'details']
+                columns: ['name', 'status', 'details'],
+                noDetails: false
             }
         },
         updated() {
@@ -86,9 +88,13 @@
                 this.statuses = [];
                 this.tableData = [];
                 this.tableData.push({name: 'Global', status: data.status, details: data});
-                this.tableData = this.tableData.concat(Object.keys(data.details).map(function (key) {
-                    return Object.assign({name: key}, data.details[key])
-                }));
+                if(data.details) {
+                    this.tableData = this.tableData.concat(Object.keys(data.details).map(function (key) {
+                        return Object.assign({name: key}, data.details[key])
+                    }));
+                } else {
+                    this.noDetails = true;
+                }
                 for (let health of this.tableData) {
                     this.putIfAbsent(this.statuses, health.status);
                 }
@@ -96,7 +102,7 @@
             internalRefresh() {
 
                 return this.$api.health().then(response => {
-                    this.parse(response.data)
+                    this.parse(response.data);
                 }).catch((error) => {
                     if(error.response.data && error.response.data.status){
                         this.parse(error.response.data);

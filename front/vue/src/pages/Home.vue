@@ -2,6 +2,7 @@
     <div class="card card-page">
         <div class="card-header">Home</div>
         <div class="card-body">
+            <p v-if="paths.length === 0" class="alert alert-warning" v-html="$t('home.no-endpoints')"></p>
             <ul>
                 <li v-for="(path,key) of paths" :key="key">
                     <a :href="'#/admin/'+ path">{{$t('header.'+path)}}</a>
