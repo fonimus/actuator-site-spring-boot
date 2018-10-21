@@ -28,7 +28,7 @@ and [react](https://fonimus.github.io/actuator-site-spring-boot/docs/react/#/) d
 
 ## Configuration
 
-Please check [ActuatorSiteAutoConfiguration.java](starter/src/main/kotlin/com/github/fonimus/vueboot/VueBootAutoConfiguration.java) for more information.
+Please check [ActuatorSiteAutoConfiguration.kt](starter/src/main/kotlin/com/github/fonimus/actuator/site/ActuatorSiteAutoConfiguration.kt) for more information.
 
 ```yaml
 actuator:
@@ -37,9 +37,7 @@ actuator:
     enabled: true
     # path will be ${context-path}/${actuator-base-path}/site
     site-path: /site
-    # front type, 'vue' or 'react'
-    type: vue
-    # if the actuator web site should be loaded form another directory
+    # if the actuator web site should be loaded form another directory, or if you want to use custom web site
     resource-path: classpath:/webjars/actuator-site/
 ```
 
@@ -49,10 +47,10 @@ actuator:
 
 Sample with provided configuration [application.yml](./sample/src/main/resources/application.yml). 
 
-1. Build sample application
+1. Build sample application (use `react` profile to build sample with react dependency)
 
     ```bash
-    mvn clean install -DskipTests
+    mvn clean install [-DskipTests] [-P react]
     ```
 1. Start application
 
