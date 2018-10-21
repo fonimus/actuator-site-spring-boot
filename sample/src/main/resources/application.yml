@@ -1,0 +1,17 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  security:
+    user:
+      password: password
+
+info:
+  test: value
+

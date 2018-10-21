@@ -1,0 +1,36 @@
+{
+  "name": "reactboot",
+  "version": "1.0.0",
+  "description": "Reactboot: react actuator site for spring boot",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fonimus/vue-actuator-spring-boot.git"
+  },
+  "keywords": [],
+  "author": "François Onimus",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fonimus/vue-actuator-spring-boot/issues"
+  },
+  "homepage": "./",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-scripts": "2.0.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

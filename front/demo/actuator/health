@@ -1,0 +1,1 @@
+{"status":"DOWN","details":{"healthyService":{"status":"UP","details":{"test":"value"}},"unhealthyService":{"status":"DOWN","details":{"error":"java.lang.IllegalArgumentException: test"}},"diskSpace":{"status":"UP","details":{"total":250685575168,"free":79878463488,"threshold":10485760}}}}
