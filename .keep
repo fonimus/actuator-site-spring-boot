@@ -1,8 +1,5 @@
-mvn release:clean release:prepare -DdevelopmentVersion=1.0.0-SNAPSHOT -DreleaseVersion=0.1.0 -Dtag=0.1.0 && mvn release:clean
-git checkout 0.1.0
-mvn deploy -P release
-git checkout master
-git push
+mvn release:clean release:prepare
+[push origin and tag]
 
 <settings>
   <servers>
