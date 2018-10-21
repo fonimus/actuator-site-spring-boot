@@ -1,4 +1,4 @@
-# VueBoot: Actuator Site in Vue.js for Spring Boot
+# Actuator Site for Spring Boot
 
 [![Build Status](https://travis-ci.org/fonimus/actuator-site-spring-boot.svg?branch=master)](https://travis-ci.org/fonimus/actuator-site-spring-boot)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.fonimus/actuator-site-spring-boot-parent.svg?label=%22maven%20central%22)](https://search.maven.org/search?q=g:%22com.github.fonimus%22%20AND%20a:%22actuator-site-spring-boot-starter%22)
