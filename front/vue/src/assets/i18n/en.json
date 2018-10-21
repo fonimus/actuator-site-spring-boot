@@ -48,6 +48,7 @@
   "raw.copy.success": "Copied to clipboard !",
   "raw.copy.error": "Unable to copy",
   "refresh.data": "Refresh data",
+  "go.to": "Go to page",
   "audit.title": "Audit",
   "beans.title": "Beans",
   "beans.name": "Bean name",

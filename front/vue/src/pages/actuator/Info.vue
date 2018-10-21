@@ -4,8 +4,13 @@
             <div><span v-t="'info.title'"></span></div>
             <div class="ml-auto">
                 <raw :raw="source"></raw>
-                <fa class="pointer" icon="sync" @click="!loading && refresh()" :spin="loading" v-b-tooltip.hover
-                    :title="$t('refresh.data')"/>
+                <a>
+                    <fa class="pointer space" icon="sync" @click="!loading && refresh()" :spin="loading" v-b-tooltip.hover
+                        :title="$t('refresh.data')"/>
+                </a>
+                <a target="_blank" rel="noopener noreferrer" href="../info">
+                    <fa class="space" icon="share-square" v-b-tooltip.hover :title="$t('go.to')"/>
+                </a>
             </div>
         </div>
         <div class="card-body">

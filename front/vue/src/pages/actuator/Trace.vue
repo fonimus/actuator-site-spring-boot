@@ -4,8 +4,11 @@
             <div><span v-t="'trace.title'"></span></div>
             <div class="ml-auto">
                 <raw :raw="source"></raw>
-                <fa class="pointer" icon="sync" @click="!loading && refresh()" :spin="loading" v-b-tooltip.hover
+                <fa class="pointer space" icon="sync" @click="!loading && refresh()" :spin="loading" v-b-tooltip.hover
                     :title="$t('refresh.data')"/>
+                <a target="_blank" rel="noopener noreferrer" href="../httptrace">
+                    <fa class="space" icon="share-square" v-b-tooltip.hover :title="$t('go.to')"/>
+                </a>
             </div>
         </div>
         <div class="card-body">

@@ -48,6 +48,7 @@
   "raw.copy.success": "Copié dans le presse-papier !",
   "raw.copy.error": "Impossible de copier",
   "refresh.data": "Rafraîchir les données",
+  "go.to": "Aller à la page",
   "audit.title": "Audit",
   "beans.title": "Beans",
   "beans.name": "Nom du bean",
