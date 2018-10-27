@@ -61,6 +61,10 @@ Sample with provided configuration [application.yml](./sample/src/main/resources
 
 ## Release note
 
+### 0.3.0
+
+* Use [vuetifyjs](https://vuetifyjs.com/en/) for vue front site
+
 ### 0.2.0
 
 * Fix project without actuator dependency failure
