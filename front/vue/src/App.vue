@@ -59,7 +59,7 @@
         <v-list>
           <v-list-tile v-for="i in 4" :key="i">
             <v-list-tile-title @click="switchColor(colors[i+((i-1)*4)+(j-2)])" v-for="j in 5" :key="j">
-              <v-icon dark small v-bind:style="{color: colors[i+((i-1)*4)+(j-2)]}" class="space pointer">check_circle
+              <v-icon dark v-bind:style="{color: colors[i+((i-1)*4)+(j-2)]}" class="space pointer">check_circle
               </v-icon>
             </v-list-tile-title>
           </v-list-tile>
@@ -68,8 +68,8 @@
 
       <v-tooltip bottom>
         <v-btn slot="activator" color="primary" depressed class="v-btn--header" @click="switchTheme">
-          <span v-t="'header.theme'" class="hidden-sm-and-down"></span>
           <v-icon left>invert_colors</v-icon>
+          <span v-t="'header.theme'" class="hidden-sm-and-down"></span>
         </v-btn>
         <span v-if="dark">{{$t('header.theme.light')}}</span>
         <span v-if="!dark">{{$t('header.theme.dark')}}</span>
@@ -80,7 +80,7 @@
         <router-view/>
       </v-container>
     </v-content>
-    <v-footer :fixed="fixed" app height="50">
+    <v-footer height="50">
       <v-flex text-xs-center>
         <span>Copyright © {{ new Date().getFullYear() }} | </span>
         <a href="https://github.com/fonimus/actuator-site-spring-boot">
@@ -159,10 +159,18 @@
       switchTheme() {
         this.dark = !this.dark
         this.$cookies.set('VUEBOOT-THEME', this.dark ? 'dark' : 'light')
+        this.applyThemeToBody()
       },
       switchColor(color) {
         this.$vuetify.theme.primary = color
         this.$cookies.set('VUEBOOT-COLOR', color)
+      },
+      applyThemeToBody() {
+        if (this.dark) {
+          document.body.style.backgroundColor = '#303030'
+        } else {
+          document.body.style.backgroundColor = '#fafafa'
+        }
       }
     },
     mounted() {
@@ -172,6 +180,7 @@
       if (themeFromCookies) {
         this.dark = themeFromCookies === 'dark'
       }
+      this.applyThemeToBody()
       let colorFromCookies = this.$cookies.get('VUEBOOT-COLOR')
       this.$vuetify.theme.primary = colorFromCookies || '#607D8B'
       this.$languages.changeLanguage(language).finally(() => {

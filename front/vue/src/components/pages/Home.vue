@@ -36,7 +36,7 @@
         }
         this.paths.sort()
       }).catch(e => {
-        this.displaySnackbar(this.$t('error.get.actuator'), 'error')
+        this.$snack.error(this.$t('error.get.actuator'))
         this.$log.error('Error while available actuator endpoints: ', e)
         this.error = e
       }).finally(() => {
