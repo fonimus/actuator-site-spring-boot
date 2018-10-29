@@ -113,7 +113,6 @@
           case 'OFF':
           case 'UNKNOWN':
           case 'OPTIONS':
-          case 'CONNECT':
           case 'session':
           case 'global-session':
             color = 'dark'
@@ -123,6 +122,7 @@
             color = 'cyan'
             break
           case 'DEBUG':
+          case 'CONNECT':
             color = 'purple'
             break
         }

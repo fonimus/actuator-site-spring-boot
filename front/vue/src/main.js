@@ -13,7 +13,7 @@ import VueI18nDirectives from 'vue-i18n-directives'
 import VueCookies from 'vue-cookies'
 import moment from 'moment'
 import VueHighlightJS from 'vue-highlight.js'
-import 'highlight.js/styles/agate.css'
+import 'highlight.js/styles/dracula.css'
 
 // app, router
 import App from './App'

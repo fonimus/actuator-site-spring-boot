@@ -21,7 +21,7 @@
 
         <v-tooltip bottom v-if="url">
           <v-btn icon slot="activator">
-            <a target="_blank" rel="noopener noreferrer" :href="'http://localhost:8080/actuator' + url">
+            <a class="a-inherit" target="_blank" rel="noopener noreferrer" :href="'..' + url">
               <v-icon>launch</v-icon>
             </a>
           </v-btn>
@@ -48,3 +48,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .a-inherit {
+    color: inherit;
+    text-decoration: inherit;
+  }
+</style>

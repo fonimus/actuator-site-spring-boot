@@ -1,5 +1,5 @@
 <template>
-  <div class="confirm" v-resize="onResize">
+  <div v-resize="onResize">
 
     <v-tooltip bottom v-if="raw">
       <v-btn icon slot="activator" @click="dialog = true">

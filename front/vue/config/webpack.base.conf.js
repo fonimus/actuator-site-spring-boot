@@ -63,6 +63,9 @@ module.exports = {
       {
         from: path.resolve(__dirname, '../../demo'), to: '',
         ignore: [DEMO_IGNORE]
+      },
+      {
+        from: path.resolve(__dirname, '../../i18n'), to: 'i18n'
       }
     ])
   ],
