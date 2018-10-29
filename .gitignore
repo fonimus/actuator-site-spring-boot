@@ -14,3 +14,6 @@ build/
 target/
 
 .DS_Store
+
+/front/react/public/i18n/
+/front/react/public/actuator/

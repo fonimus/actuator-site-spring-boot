@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "Reactboot: react actuator site for spring boot",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run copy && PORT=3001 react-scripts start",
+    "start:demo": "npm run copy:demo && PORT=3001 REACT_APP_DEMO=demo react-scripts start",
+    "build": "npm run copy && react-scripts build",
+    "build:demo": "npm run copy:demo && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy": " rimraf ./public/i18n && rimraf ./public/actuator && ncp '../i18n' './public/i18n'",
+    "copy:demo": "npm run copy && ncp '../demo' './public/'"
   },
+  "proxy": "http://localhost:8080",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fonimus/vue-actuator-spring-boot.git"
@@ -20,9 +25,27 @@
   },
   "homepage": "./",
   "dependencies": {
+    "@material-ui/core": "^3.3.1",
+    "axios": "^0.18.0",
+    "highlight.js": "^9.13.1",
+    "material-table": "^1.0.2",
+    "material-ui-popup-state": "^1.0.1",
+    "nprogress": "^0.2.0",
     "react": "^16.5.2",
+    "react-cookie": "^3.0.4",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.5.2",
+    "react-highlight.js": "^1.0.7",
+    "react-intl": "^2.7.2",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5"
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^3.0.4",
+    "http-proxy-middleware": "^0.19.0",
+    "ncp": "^2.0.0",
+    "prop-types": "^15.6.2",
+    "rimraf": "^2.6.2"
   },
   "eslintConfig": {
     "extends": "react-app"

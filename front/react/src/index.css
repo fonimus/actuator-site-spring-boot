@@ -1,50 +1,92 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+    margin: 0;
 }
 
-ol, ul {
-  padding-left: 30px;
+.home-links {
+    text-align: center;
+    max-width: 1224px;
+    margin: auto;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+/* np progress */
+
+#nprogress {
+    pointer-events: none;
 }
 
-.status {
-  margin-bottom: 10px;
+#nprogress .bar {
+    background: white;
+
+    position: fixed;
+    z-index: 1101;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
 }
 
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
+/* Fancy blur effect */
+#nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px white, 0 0 5px white;
+    opacity: 1.0;
+
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
 }
 
-.square:focus {
-  outline: none;
+#nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 15px;
+    right: 15px;
 }
 
-.kbd-navigation .square:focus {
-  background: #ddd;
+#nprogress .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+
+    border: solid 2px transparent;
+    border-top-color: white;
+    border-left-color: white;
+    border-radius: 50%;
+
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+    animation: nprogress-spinner 400ms linear infinite;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
+.nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
 }
 
-.game-info {
-  margin-left: 20px;
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+    position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes nprogress-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
