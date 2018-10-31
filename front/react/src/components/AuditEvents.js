@@ -65,7 +65,7 @@ class AuditEvents extends Component {
                 tableData: response.data.events,
                 types: types
             })
-        }).catch(e => {
+        }).catch((e) => {
             logger.error("Error while loading audits", e);
             openSnackbar(<FormattedMessage id="error.get.audit"/>, 'error');
         }).finally(() => {

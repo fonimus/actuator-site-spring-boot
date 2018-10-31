@@ -17,3 +17,8 @@ target/
 
 /front/react/public/i18n/
 /front/react/public/actuator/
+
+/front/vue/public/i18n/
+/front/vue/public/actuator/
+/front/vue/tests/e2e/reports/
+/front/vue/selenium-debug.log

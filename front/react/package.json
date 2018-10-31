@@ -15,13 +15,13 @@
   "proxy": "http://localhost:8080",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fonimus/vue-actuator-spring-boot.git"
+    "url": "git+https://github.com/fonimus/actuator-site-spring-boot.git"
   },
   "keywords": [],
   "author": "François Onimus",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/fonimus/vue-actuator-spring-boot/issues"
+    "url": "https://github.com/fonimus/actuator-site-spring-boot/issues"
   },
   "homepage": "./",
   "dependencies": {

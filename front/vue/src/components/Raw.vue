@@ -40,49 +40,49 @@
       return {
         dialog: false,
         height: 700
-      }
+      };
     },
     updated () {
-      this.onResize()
+      this.onResize();
     },
     props: {
       size: {
-        default: 'modal-lg'
+        default: 'modal-lg',
       },
       raw: {
-        default: null
+        default: null,
       },
       mode: {
-        default: 'text/javascript'
+        default: 'text/javascript',
       },
       showCopy: {
-        default: true
-      }
+        default: true,
+      },
     },
     methods: {
       success () {
-        this.$snack.success(this.$t('raw.copy.success'))
+        this.$snack.success(this.$t('raw.copy.success'));
       },
       error () {
-        this.$snack.error(this.$t('raw.copy.error'))
+        this.$snack.error(this.$t('raw.copy.error'));
       },
       show () {
-        this.$refs.rawModalRef.show()
-        setTimeout(() => this.$refs.editor.refresh(), 1)
+        this.$refs.rawModalRef.show();
+        setTimeout(() => this.$refs.editor.refresh(), 1);
       },
       close () {
-        this.$refs.rawModalRef.hide()
+        this.$refs.rawModalRef.hide();
       },
       onResize () {
-        this.height = window.innerHeight
+        this.height = window.innerHeight;
       }
     },
     computed: {
       code () {
-        return JSON.stringify(this.raw, null, 2)
+        return JSON.stringify(this.raw, null, 2);
       }
     }
-  }
+  };
 </script>
 
 <style scoped>
