@@ -8,7 +8,7 @@
       <span>{{ $t('raw.see-details')}}</span>
     </v-tooltip>
 
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" persistent="false">
       <v-card>
         <v-card-title class="headline">
           <span v-t="'raw.default.title'"></span>

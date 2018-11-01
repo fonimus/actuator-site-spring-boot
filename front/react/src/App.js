@@ -161,6 +161,7 @@ class App extends Component {
         App.applyThemeToBody(isDark);
 
         api.actuator().then(response => {
+            console.log('>>>>', response)
             let paths = [];
             for (let path of PATHS) {
                 if (response.data._links) {
@@ -170,8 +171,8 @@ class App extends Component {
                 }
             }
             paths.sort();
-            this.setState({paths: paths});
-        }).finally(() => {
+            this.setState({paths: paths, loading: false});
+        }).catch(() => {
             this.setState({loading: false});
         })
     }

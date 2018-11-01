@@ -97,7 +97,9 @@
 
         <v-snackbar v-model="snackbar.display" :color="snackbar.color" :timeout="snackbar.timeout">
             {{snackbar.text}}
-            <v-btn dark flat icon @click="snackbar.display = false">X</v-btn>
+            <v-btn dark flat icon @click="snackbar.display = false">
+                <v-icon>close</v-icon>
+            </v-btn>
         </v-snackbar>
     </v-app>
 </template>
