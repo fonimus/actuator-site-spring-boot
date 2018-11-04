@@ -102,7 +102,6 @@
                     case 'HEAD':
                     case 'servletContextInitParams':
                     case 'defaultProperties':
-                    case 'UNCONDITIONAL':
                     case 'NEW':
                     case 'TERMINATED':
                     case '3XX':
@@ -110,6 +109,7 @@
                         color = 'primary';
                         break;
                     case 'OFF':
+                    case 'UNCONDITIONAL':
                     case 'UNKNOWN':
                     case 'OPTIONS':
                     case 'session':

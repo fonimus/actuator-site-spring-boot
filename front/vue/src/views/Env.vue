@@ -8,7 +8,7 @@
       <v-alert :value="true" type="info">
         <span v-if="profiles.length === 0" v-t="'env.no-profiles'"></span>
         <span v-else>
-          <strong><span v-t="'env.profiles'"></span>:</strong>
+          <strong><span v-t="'env.profiles'"></span> : </strong>
           <span class="space" v-for="profile in profiles"
                 :key="profile">{{profile}}</span>
         </span>
@@ -27,7 +27,7 @@
       <v-text-field v-model="search" append-icon="search" :label="$t('common.filter')" single-line
                     hide-details></v-text-field>
 
-      <v-data-table :headers="headers" :items="rows" :search="search" :loading="loading"
+      <v-data-table class="table-shadow" :headers="headers" :items="rows" :search="search" :loading="loading"
                     :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
         <template slot="items" slot-scope="props">
           <td>{{ props.item.name }}</td>

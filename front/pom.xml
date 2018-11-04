@@ -67,7 +67,6 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
-            <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -95,6 +94,16 @@
                             <phase>${actuator.site.build.phase}</phase>
                             <configuration>
                                 <arguments>install</arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>yarn-version-to-package-json</id>
+                            <goals>
+                                <goal>yarn</goal>
+                            </goals>
+                            <phase>${actuator.site.build.phase}</phase>
+                            <configuration>
+                                <arguments>sync-pom-version</arguments>
                             </configuration>
                         </execution>
                         <execution>

@@ -14,20 +14,32 @@ import PopupState, {bindMenu, bindTrigger} from 'material-ui-popup-state';
 import {Cookies, CookiesProvider, withCookies} from 'react-cookie';
 import axios from 'axios'
 import nprogress from 'nprogress'
-import {BrowserRouter, Link, NavLink, Route, Switch} from "react-router-dom";
+import {HashRouter, Link, NavLink, Route, Switch} from "react-router-dom";
 import {addLocaleData, FormattedMessage, IntlProvider} from "react-intl";
 import fr from "react-intl/locale-data/fr";
 import es from "react-intl/locale-data/es";
 
 import 'highlight.js/styles/dracula.css'
 
-import Home from './components/Home';
-import AuditEvents from './components/AuditEvents';
-import NotFound from './components/NotFound';
+import Home from './pages/Home';
+import AuditEvents from './pages/AuditEvents';
+import HttpTrace from './pages/HttpTrace';
+import NotFound from './pages/NotFound';
 import api from './services/api';
 import i18n from './services/i18n';
 import logger from './services/logger';
 import Notifier from './components/Notifier';
+import ThreadDump from "./pages/ThreadDump";
+import Info from "./pages/Info";
+import ScheduledTasks from "./pages/ScheduledTasks";
+import Metrics from "./pages/Metrics";
+import Loggers from "./pages/Loggers";
+import Health from "./pages/Health";
+import Env from "./pages/Env";
+import Conditions from "./pages/Conditions";
+import Beans from "./pages/Beans";
+import Mappings from "./pages/Mappings";
+import ConfigProps from "./pages/ConfigProps";
 
 const PATHS = ['info', 'health', 'metrics', 'env', 'mappings', 'beans', 'configprops', 'loggers',
     'threaddump', 'conditions', 'httptrace', 'scheduledtasks', 'auditevents'];
@@ -123,9 +135,9 @@ class App extends Component {
         languageAnchorEl: null,
         colorAnchorEl: null,
         date: new Date().getFullYear(),
-        version: '1.0.0',
         env: process.env.NODE_ENV,
         demo: process.env.REACT_APP_DEMO,
+        version: process.env.REACT_APP_VERSION,
         paths: [],
         ready: false
     };
@@ -161,7 +173,6 @@ class App extends Component {
         App.applyThemeToBody(isDark);
 
         api.actuator().then(response => {
-            console.log('>>>>', response)
             let paths = [];
             for (let path of PATHS) {
                 if (response.data._links) {
@@ -273,7 +284,7 @@ class App extends Component {
         return (
             <CookiesProvider>
                 <IntlProvider locale={i18n.locale} messages={i18n.messages}>
-                    <BrowserRouter>
+                    <HashRouter>
                         {ready && !loading &&
                         <MuiThemeProvider theme={theme}>
                             <Notifier/>
@@ -296,15 +307,18 @@ class App extends Component {
                                                     </Button>
                                                     <Menu {...bindMenu(popupState)}>
                                                         {paths.map((path, i) =>
-                                                            <NavLink to={'/' + path} key={i} activeStyle={{
-                                                                color: theme.palette.primary.main,
-                                                                textDecoration: 'unset'
-                                                            }} onClick={popupState.close}
-                                                                     className={classes.navLink}>
-                                                                <MenuItem>
-                                                                    <FormattedMessage id={'header.' + path}/>
-                                                                </MenuItem>
-                                                            </NavLink>
+                                                            <MenuItem key={i}>
+                                                                <NavLink to={'/' + path}
+                                                                         activeStyle={{
+                                                                             color: theme.palette.primary.main
+                                                                         }}
+                                                                         onClick={popupState.close}
+                                                                         style={{width: '100%'}}
+                                                                         className={classes.navLink}>
+                                                                    <FormattedMessage color={"inherited"}
+                                                                                      id={'header.' + path}/>
+                                                                </NavLink>
+                                                            </MenuItem>
                                                         )}
                                                     </Menu>
                                                 </React.Fragment>
@@ -373,6 +387,18 @@ class App extends Component {
                             <div className={classes.container}>
                                 <Switch>
                                     <Route path="/" exact component={Home}/>
+                                    <Route path="/info" component={Info}/>
+                                    <Route path="/health" component={Health}/>
+                                    <Route path="/metrics" component={Metrics}/>
+                                    <Route path="/env" component={Env}/>
+                                    <Route path="/mappings" component={Mappings}/>
+                                    <Route path="/beans" component={Beans}/>
+                                    <Route path="/configprops" component={ConfigProps}/>
+                                    <Route path="/loggers" component={Loggers}/>
+                                    <Route path="/threaddump" component={ThreadDump}/>
+                                    <Route path="/conditions" component={Conditions}/>
+                                    <Route path="/httptrace" component={HttpTrace}/>
+                                    <Route path="/scheduledtasks" component={ScheduledTasks}/>
                                     <Route path="/auditevents" component={AuditEvents}/>
                                     <Route component={NotFound}/>
                                 </Switch>
@@ -402,7 +428,7 @@ class App extends Component {
                             </footer>
                         </MuiThemeProvider>
                         }
-                    </BrowserRouter>
+                    </HashRouter>
                 </IntlProvider>
             </CookiesProvider>
         );

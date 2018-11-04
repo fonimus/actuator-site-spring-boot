@@ -8,6 +8,29 @@ body {
     margin: auto;
 }
 
+.highlight-raw pre {
+    margin: 0;
+}
+
+.filters {
+    margin-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.column-max-name {
+    max-width: 350px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.space {
+    margin-right: 5px
+}
+
 /* np progress */
 
 #nprogress {

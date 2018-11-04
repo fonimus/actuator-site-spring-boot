@@ -10,7 +10,8 @@ export default new Router({
     routes: [
         {path: '/', name: 'home', component: Home},
         {
-            path: '/info', name: 'info',
+            path: '/info',
+            name: 'info',
             component: () => import(/* webpackChunkName: "info" */ './views/Info.vue'),
         },
         {
@@ -23,13 +24,21 @@ export default new Router({
             name: 'metrics',
             component: () => import(/*webpackChunkName: "metrics" */ './views/Metrics.vue'),
         },
-        {path: '/env', name: 'env', component: () => import(/*webpackChunkName: "env" */ './views/Env.vue')},
+        {
+            path: '/env',
+            name: 'env',
+            component: () => import(/*webpackChunkName: "env" */ './views/Env.vue')
+        },
         {
             path: '/mappings',
             name: 'mappings',
             component: () => import(/*webpackChunkName: "mappings" */ './views/Mappings.vue'),
         },
-        {path: '/beans', name: 'beans', component: () => import(/*webpackChunkName: "beans" */ './views/Beans.vue')},
+        {
+            path: '/beans',
+            name: 'beans',
+            component: () => import(/*webpackChunkName: "beans" */ './views/Beans.vue')
+        },
         {
             path: '/configprops',
             name: 'configprops',

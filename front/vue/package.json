@@ -1,18 +1,19 @@
 {
   "name": "vueboot",
-  "version": "1.0.0",
+  "version": "1.0.0-SNAPSHOT",
   "description": "Vueboot: react actuator site for spring boot",
   "scripts": {
-    "start": "npm run copy && PORT=3000 vue-cli-service serve",
-    "start:demo": "npm run copy:demo && PORT=3000 VUE_APP_DEMO=demo vue-cli-service serve",
-    "build": "npm run copy && vue-cli-service build",
-    "build:demo": "npm run copy:demo && VUE_APP_DEMO=demo vue-cli-service build --dest ../../docs/vue",
+    "start": "npm run copy && PORT=3000 VUE_APP_VERSION=$npm_package_version vue-cli-service serve",
+    "start:demo": "npm run copy:demo && PORT=3000 VUE_APP_VERSION=$npm_package_version VUE_APP_DEMO=demo vue-cli-service serve",
+    "build": "npm run copy && VUE_APP_VERSION=$npm_package_version vue-cli-service build",
+    "build:demo": "npm run copy:demo && VUE_APP_VERSION=$npm_package_version VUE_APP_DEMO=demo vue-cli-service build --dest ../../docs/vue",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit && vue-cli-service test:e2e",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "copy": " rimraf ./public/i18n && rimraf ./public/actuator && ncp '../i18n' './public/i18n'",
-    "copy:demo": "npm run copy && ncp '../demo' './public/'"
+    "copy:demo": "npm run copy && ncp '../demo' './public/'",
+    "sync-pom-version": "sync-pom-version"
   },
   "repository": {
     "type": "git",
@@ -57,6 +58,7 @@
     "node-sass": "^4.9.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
+    "sync-pom-version": "^1.1.0",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.17"
   },

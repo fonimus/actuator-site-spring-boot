@@ -4,61 +4,59 @@
             <span v-t="'mappings.title'"></span>
         </template>
         <template slot="content">
-            <v-tabs v-model="tabActive">
+            <v-tabs v-model="tabActive" slider-color="primary">
                 <v-tab v-for="tableData of tableDataList" :key="tableData.name" ripple>
                     <span v-t="'common.context'"></span> : <span>{{ tableData.name }}</span>
                 </v-tab>
                 <v-tab-item v-for="tableData of tableDataList" :key="tableData.name">
                     <v-card flat>
-                        <v-card-text>
+                        <v-layout justify-space-between class="filters">
+                            <div>
+                                <span v-t="'filter.methods'"></span>
+                                <button-filter v-for="method in methods" :key="method" :name="method"
+                                               :on-select="activate.bind(this, methodFilters, method)"
+                                               :on-remove="deactivate.bind(this, methodFilters, method)"
+                                               :color="color(method)">
 
-                            <v-layout justify-space-between class="filters">
-                                <div>
-                                    <span v-t="'filter.methods'"></span>
-                                    <button-filter v-for="method in methods" :key="method" :name="method"
-                                                   :on-select="activate.bind(this, methodFilters, method)"
-                                                   :on-remove="deactivate.bind(this, methodFilters, method)"
-                                                   :color="color(method)">
+                                </button-filter>
+                            </div>
 
-                                    </button-filter>
-                                </div>
+                            <v-text-field class="search-field" v-model="search" append-icon="search"
+                                          :label="$t('common.filter')"
+                                          single-line
+                                          hide-details>
 
-                                <v-text-field class="search-field" v-model="search" append-icon="search"
-                                              :label="$t('common.filter')"
-                                              single-line
-                                              hide-details>
+                            </v-text-field>
+                        </v-layout>
 
-                                </v-text-field>
-                            </v-layout>
-
-                            <v-data-table :headers="headers" :items="rows" :search="search" :loading="loading"
-                                          :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
-                                <template slot="items" slot-scope="props">
-                                    <td>
-                                        <v-btn class="v-btn--no-transform" small round
-                                               v-if="typeof props.item.patterns !== 'string'"
-                                               color="info" :key="pattern" v-for="pattern in props.item.patterns">
-                                            {{pattern}}
-                                        </v-btn>
-                                        <v-btn class="v-btn--no-transform" small round
-                                               v-if="typeof props.item.patterns === 'string'"
-                                               color="info">
-                                            {{props.item.patterns}}
-                                        </v-btn>
-                                    </td>
-                                    <td>
-                                        <v-btn small round :color="color(method)" v-for="method in props.item.methods"
-                                               :key="method">{{ method }}
-                                        </v-btn>
-                                    </td>
-                                    <td>{{ props.item.class }}</td>
-                                    <td>{{ props.item.method }}</td>
-                                    <td>
-                                        <raw :raw="props.item.original"></raw>
-                                    </td>
-                                </template>
-                            </v-data-table>
-                        </v-card-text>
+                        <v-data-table class="table-shadow" :headers="headers" :items="rows" :search="search"
+                                      :loading="loading"
+                                      :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
+                            <template slot="items" slot-scope="props">
+                                <td>
+                                    <v-btn class="v-btn--no-transform" small round
+                                           v-if="typeof props.item.patterns !== 'string'"
+                                           color="info" :key="pattern" v-for="pattern in props.item.patterns">
+                                        {{pattern}}
+                                    </v-btn>
+                                    <v-btn class="v-btn--no-transform" small round
+                                           v-if="typeof props.item.patterns === 'string'"
+                                           color="info">
+                                        {{props.item.patterns}}
+                                    </v-btn>
+                                </td>
+                                <td>
+                                    <v-btn small round :color="color(method)" v-for="method in props.item.methods"
+                                           :key="method">{{ method }}
+                                    </v-btn>
+                                </td>
+                                <td>{{ props.item.class }}</td>
+                                <td>{{ props.item.method }}</td>
+                                <td>
+                                    <raw :raw="props.item.original"></raw>
+                                </td>
+                            </template>
+                        </v-data-table>
                     </v-card>
                 </v-tab-item>
             </v-tabs>

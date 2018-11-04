@@ -195,7 +195,7 @@
         created() {
             this.env = process.env.NODE_ENV;
             this.demo = process.env.VUE_APP_DEMO;
-            this.version = '1.0.0';
+            this.version = process.env.VUE_APP_VERSION;
             this.$log.info('Running actuator website v' + this.version);
             if (this.env === 'development') {
                 this.$log.info('Running in development environment');
@@ -244,7 +244,20 @@
     }
 
     .filters {
-        margin-left: 25px;
+        margin-bottom: 20px;
+    }
+
+    .table-shadow {
+        border-radius: 4px;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+    }
+
+    .v-window__container {
+        padding-top: 10px;
+    }
+
+    .v-alert {
+        border-radius: 5px;
     }
 
     .v-btn--xs {

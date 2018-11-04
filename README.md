@@ -61,6 +61,11 @@ Sample with provided configuration [application.yml](./sample/src/main/resources
 
 ## Release note
 
+### 0.4.0
+
+* Small updates for vue front site
+* Implement react with [material ui](https://material-ui.com/)
+
 ### 0.3.0
 
 * Use [vuetifyjs](https://vuetifyjs.com/en/) for vue front site

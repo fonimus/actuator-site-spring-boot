@@ -1,7 +1,7 @@
 <template>
     <actuator-card :source="source" :refresh="refresh" url="/loggers">
         <template slot="title">
-            <span v-t="'trace.title'"></span>
+            <span v-t="'loggers.title'"></span>
         </template>
         <template slot="content">
 
@@ -21,7 +21,7 @@
                               hide-details></v-text-field>
             </v-layout>
 
-            <v-data-table :headers="headers" :items="rows" :search="search" :loading="loading"
+            <v-data-table class="table-shadow" :headers="headers" :items="rows" :search="search" :loading="loading"
                           :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
                 <template slot="items" slot-scope="props">
                     <td>{{ props.item.name }}</td>
@@ -107,14 +107,15 @@
             updateLevel(name, level) {
                 this.dialogLoading = true;
                 this.$api.loggerUpdate(name, level).then(() => {
-                    this.$snack.success(this.$t('logger.update.success'));
+                    this.$snack.success(this.$t('loggers.update.success'));
+                    this.refresh();
                 }).catch((e) => {
                     this.$log.error('Error while updating logger: ' + name, e);
-                    this.$snack.error(this.$t('logger.update.error'));
+                    this.$snack.error(this.$t('loggers.update.error'));
                     this.error = e;
                 }).finally(() => {
                     this.dialog = false;
-                    this.refresh();
+                    this.loading = false;
                 });
             },
             internalRefresh() {

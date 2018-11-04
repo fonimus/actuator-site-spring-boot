@@ -7,7 +7,9 @@
             <span></span>
         </template>
         <template slot="content">
-            <p>{{$t('not-found.content')}}</p>
+            <div class="text-xs-center">
+                <p>{{$t('not-found.content')}}</p>
+            </div>
         </template>
     </actuator-card>
 </template>

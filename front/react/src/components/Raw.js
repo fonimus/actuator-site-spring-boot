@@ -57,11 +57,15 @@ class Raw extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">{"Details"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">
+                        <FormattedMessage id="raw.default.title"/>
+                    </DialogTitle>
                     <DialogContent>
-                        <Highlight language={"json"}>
-                            {code}
-                        </Highlight>
+                        <div className={"highlight-raw"}>
+                            <Highlight language={"json"}>
+                                {code}
+                            </Highlight>
+                        </div>
                     </DialogContent>
                     <DialogActions>
                         <CopyToClipboard text={code} onCopy={this.handleCopy}>

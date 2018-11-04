@@ -4,46 +4,45 @@
             <span v-t="'conditions.title'"></span>
         </template>
         <template slot="content">
-            <v-tabs v-model="tabActive">
+            <v-tabs v-model="tabActive" slider-color="primary">
                 <v-tab v-for="tableData of tableDataList" :key="tableData.name" ripple>
                     <span v-t="'common.context'"></span> : <span>{{ tableData.name }}</span>
                 </v-tab>
                 <v-tab-item v-for="tableData of tableDataList" :key="tableData.name">
                     <v-card flat>
-                        <v-card-text>
 
-                            <v-layout justify-space-between class="filters">
-                                <div>
-                                    <span v-t="'filter.types'"></span>
-                                    <button-filter v-for="scope in types" :key="scope" :name="scope"
-                                                   :on-select="activate.bind(this, typeFilters, scope)"
-                                                   :on-remove="deactivate.bind(this, typeFilters, scope)"
-                                                   :color="color(scope)">
+                        <v-layout justify-space-between class="filters">
+                            <div>
+                                <span v-t="'filter.types'"></span>
+                                <button-filter v-for="scope in types" :key="scope" :name="scope"
+                                               :on-select="activate.bind(this, typeFilters, scope)"
+                                               :on-remove="deactivate.bind(this, typeFilters, scope)"
+                                               :color="color(scope)">
 
-                                    </button-filter>
-                                </div>
+                                </button-filter>
+                            </div>
 
-                                <v-text-field class="search-field" v-model="search" append-icon="search"
-                                              :label="$t('common.filter')"
-                                              single-line
-                                              hide-details>
+                            <v-text-field class="search-field" v-model="search" append-icon="search"
+                                          :label="$t('common.filter')"
+                                          single-line
+                                          hide-details>
 
-                                </v-text-field>
-                            </v-layout>
+                            </v-text-field>
+                        </v-layout>
 
-                            <v-data-table :headers="headers" :items="rows" :search="search" :loading="loading"
-                                          :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
-                                <template slot="items" slot-scope="props">
-                                    <td class="column-max-name">{{ props.item.name }}</td>
-                                    <td>
-                                        <v-btn small round :color="color(props.item.type)">{{ props.item.type }}</v-btn>
-                                    </td>
-                                    <td>
-                                        <raw :raw="props.item"></raw>
-                                    </td>
-                                </template>
-                            </v-data-table>
-                        </v-card-text>
+                        <v-data-table class="table-shadow" :headers="headers" :items="rows" :search="search"
+                                      :loading="loading"
+                                      :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
+                            <template slot="items" slot-scope="props">
+                                <td class="column-max-name">{{ props.item.name }}</td>
+                                <td>
+                                    <v-btn small round :color="color(props.item.type)">{{ props.item.type }}</v-btn>
+                                </td>
+                                <td>
+                                    <raw :raw="props.item"></raw>
+                                </td>
+                            </template>
+                        </v-data-table>
                     </v-card>
                 </v-tab-item>
             </v-tabs>

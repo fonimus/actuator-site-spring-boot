@@ -22,7 +22,7 @@
                 </v-text-field>
             </v-layout>
 
-            <v-data-table :headers="headers" :items="rows" :search="search" :loading="loading"
+            <v-data-table class="table-shadow" :headers="headers" :items="rows" :search="search" :loading="loading"
                           :pagination.sync="pagination" :rows-per-page-items="itemsPerPage">
                 <template slot="items" slot-scope="props">
                     <td>{{ props.item.threadId }}</td>

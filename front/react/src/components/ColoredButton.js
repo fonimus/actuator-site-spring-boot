@@ -8,13 +8,22 @@ const base = {
 };
 
 const styles = {
-    smallHomeButton: {
+    xsButton: {
+        padding: '0 8px',
+        margin: 0,
+        marginRight: '5px',
+        height: '22px',
+        minHeight: '22px',
+        fontSize: 'smaller',
+        minWidth: 'unset'
+    },
+    sButton: {
         ...base,
         margin: 0,
         height: '28px',
         minHeight: '28px'
     },
-    homeButton: {
+    button: {
         ...base,
         margin: '6px 8px',
         height: '36px',
@@ -24,17 +33,33 @@ const styles = {
 
 class ColoredButton extends Component {
     render() {
-        const {classes, color, text, theme, small} = this.props;
+        const {classes, color, text, noTransform, theme, children, variant, size, onClick} = this.props;
+
+        let className;
+        className = classes.button;
+        if (size === 'xs') {
+            className = classes.xsButton;
+        } else if (size === 's') {
+            className = classes.sButton;
+        }
 
         let newTheme;
-        if (color === 'primary') {
+        if (!color || color === 'primary') {
             newTheme = theme;
         } else {
             newTheme = createMuiTheme({
                 palette: {
                     primary: {
-                        main: color
-                    }
+                        main: color,
+                    },
+                    type: theme.palette.type
+                },
+                overrides: {
+                    MuiButton: {
+                        raisedPrimary: {
+                            color: 'white',
+                        },
+                    },
                 },
                 typography: {
                     useNextVariants: true,
@@ -44,9 +69,10 @@ class ColoredButton extends Component {
 
         return (
             <MuiThemeProvider theme={newTheme}>
-                <Button color="primary" variant="extendedFab" size="small"
-                        className={small ? classes.smallHomeButton : classes.homeButton}>
-                    <span style={{color: 'white'}}>{text}</span>
+                <Button color="primary" variant={variant ? variant : 'extendedFab'}
+                        size={size !== 'm' ? 'small' : null} className={className}
+                onClick={onClick} style={noTransform ? {textTransform: 'unset'} : {}}>
+                    {text ? <span>{text}</span> : children}
                 </Button>
             </MuiThemeProvider>
         );
@@ -55,9 +81,12 @@ class ColoredButton extends Component {
 
 ColoredButton.propTypes = {
     classes: PropTypes.object.isRequired,
-    color: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    small: PropTypes.bool
+    color: PropTypes.string,
+    text: PropTypes.any,
+    size: PropTypes.string,
+    variant: PropTypes.string,
+    onClick: PropTypes.func,
+    noTransform: PropTypes.bool
 };
 
 export default withTheme()(withStyles(styles)(ColoredButton));

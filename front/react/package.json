@@ -1,18 +1,18 @@
 {
   "name": "reactboot",
-  "version": "1.0.0",
+  "version": "1.0.0-SNAPSHOT",
   "description": "Reactboot: react actuator site for spring boot",
   "scripts": {
-    "start": "npm run copy && PORT=3001 react-scripts start",
-    "start:demo": "npm run copy:demo && PORT=3001 REACT_APP_DEMO=demo react-scripts start",
-    "build": "npm run copy && react-scripts build",
-    "build:demo": "npm run copy:demo && react-scripts build",
+    "start": "npm run copy && PORT=3001 REACT_APP_VERSION=$npm_package_version react-scripts start",
+    "start:demo": "npm run copy:demo && PORT=3001 REACT_APP_VERSION=$npm_package_version REACT_APP_DEMO=demo react-scripts start",
+    "build": "npm run copy && REACT_APP_VERSION=$npm_package_version react-scripts build",
+    "build:demo": "npm run copy:demo && REACT_APP_VERSION=$npm_package_version REACT_APP_DEMO=demo react-scripts build",
     "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "copy": " rimraf ./public/i18n && rimraf ./public/actuator && ncp '../i18n' './public/i18n'",
-    "copy:demo": "npm run copy && ncp '../demo' './public/'"
+    "copy:demo": "npm run copy && ncp '../demo' './public/'",
+    "sync-pom-version": "sync-pom-version"
   },
-  "proxy": "http://localhost:8080",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fonimus/actuator-site-spring-boot.git"
@@ -25,7 +25,7 @@
   },
   "homepage": "./",
   "dependencies": {
-    "@material-ui/core": "^3.3.1",
+    "@material-ui/core": "^3.3.2",
     "axios": "^0.18.0",
     "highlight.js": "^9.13.1",
     "material-table": "^1.0.2",
@@ -46,7 +46,8 @@
     "jest-mock-axios": "^2.1.11",
     "ncp": "^2.0.0",
     "prop-types": "^15.6.2",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "sync-pom-version": "^1.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
