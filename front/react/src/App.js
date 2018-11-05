@@ -41,12 +41,21 @@ import Beans from "./pages/Beans";
 import Mappings from "./pages/Mappings";
 import ConfigProps from "./pages/ConfigProps";
 
+import packageJson from './package-copied.json';
+
 const PATHS = ['info', 'health', 'metrics', 'env', 'mappings', 'beans', 'configprops', 'loggers',
     'threaddump', 'conditions', 'httptrace', 'scheduledtasks', 'auditevents'];
 const COOKIE_PREFIX = 'REACTBOOT-';
 
 addLocaleData(fr);
 addLocaleData(es);
+
+function removeSpecial(value) {
+    if (!value) {
+        return value;
+    }
+    return value.replace('^', '').replace('~', '');
+}
 
 function initNProgres() {
     let requestsCounter = 0;
@@ -139,14 +148,26 @@ class App extends Component {
         demo: process.env.REACT_APP_DEMO,
         version: process.env.REACT_APP_VERSION,
         paths: [],
-        ready: false
+        ready: false,
+        reactVersion: null,
+        reactMaterialUiVersion: null
     };
 
     componentWillMount() {
         initNProgres();
-        this.setState({loading: true});
 
-        logger.info('Running actuator website v' + this.state.version);
+        let suffix = '';
+        let reactVersion = null;
+        let reactMaterialUiVersion = null;
+        if (packageJson && packageJson.dependencies && packageJson.dependencies) {
+            reactVersion = removeSpecial(packageJson.dependencies.react);
+            reactMaterialUiVersion = removeSpecial(packageJson.dependencies['@material-ui/core']);
+            suffix = ', react v' + reactVersion + ', react-material-ui v' + reactMaterialUiVersion;
+        }
+
+        this.setState({loading: true, reactVersion, reactMaterialUiVersion});
+
+        logger.info('Running actuator website v' + this.state.version + suffix);
         if (this.state.env === 'development') {
             logger.info('Running in development environment')
         }
@@ -279,7 +300,10 @@ class App extends Component {
     };
 
     render() {
-        const {theme, dark, color, colors, adminAnchorEl, colorAnchorEl, languageAnchorEl, date, version, demo, paths, i18n, languages, ready, loading} = this.state;
+        const {
+            theme, dark, color, colors, adminAnchorEl, colorAnchorEl, languageAnchorEl, date, version, demo, paths,
+            i18n, languages, ready, loading, reactVersion, reactMaterialUiVersion
+        } = this.state;
         const {classes} = this.props;
         return (
             <CookiesProvider>
@@ -420,6 +444,13 @@ class App extends Component {
                                                 }
                                                 {demo &&
                                                 <span> | Demo environment</span>
+                                                }
+                                                {demo &&
+                                                <span v-if="reactVersion && reactMaterialUiVersion"> | Powered by <a
+                                                    style={{color: color}}
+                                                    href="https://reactjs.org/">React</a> v{reactVersion} and <a
+                                                    style={{color: color}} href="https://material-ui.com/">React material ui</a> v{reactMaterialUiVersion}
+                                                </span>
                                                 }
                                             </Typography>
                                         </Grid>

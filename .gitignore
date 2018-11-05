@@ -17,6 +17,7 @@ target/
 
 /front/react/public/i18n/
 /front/react/public/actuator/
+/front/react/src/package-copied.json
 
 /front/vue/public/i18n/
 /front/vue/public/actuator/

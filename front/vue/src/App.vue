@@ -92,6 +92,10 @@
                 <a href="https://github.com/fonimus">fonimus</a>
                 <span v-if="version"> | v{{version}}</span>
                 <span v-if="demo"> | Demo environment</span>
+                <span v-if="vueVersion && vuetifyVersion"> | Powered by
+                    <a href="https://vuejs.org/">Vuejs</a> v{{vueVersion}} and
+                    <a href="https://vuetifyjs.com/">Vuetify</a> v{{vuetifyVersion}}
+                </span>
             </v-flex>
         </v-footer>
 
@@ -106,6 +110,15 @@
 
 <script>
     import Vue from 'vue';
+
+    import packageJson from '../package';
+
+    function removeSpecial(value) {
+        if (!value) {
+            return value;
+        }
+        return value.replace('^', '').replace('~', '');
+    }
 
     const PATHS = ['info', 'health', 'metrics', 'env', 'mappings', 'beans', 'configprops', 'loggers',
         'threaddump', 'conditions', 'httptrace', 'scheduledtasks', 'auditevents'];
@@ -139,6 +152,9 @@
                 error: null,
                 paths: [],
                 demo: false,
+                version: null,
+                vueVersion: null,
+                vuetifyVersion: null
             };
         },
         methods: {
@@ -196,7 +212,13 @@
             this.env = process.env.NODE_ENV;
             this.demo = process.env.VUE_APP_DEMO;
             this.version = process.env.VUE_APP_VERSION;
-            this.$log.info('Running actuator website v' + this.version);
+            let suffix = '';
+            if (packageJson && packageJson.dependencies && packageJson.dependencies) {
+                this.vueVersion = removeSpecial(packageJson.dependencies.vue);
+                this.vuetifyVersion = removeSpecial(packageJson.dependencies.vuetify);
+                suffix = ', vue v' + this.vueVersion + ', vuetify v' + this.vuetifyVersion;
+            }
+            this.$log.info('Running actuator website v' + this.version + suffix);
             if (this.env === 'development') {
                 this.$log.info('Running in development environment');
             }
