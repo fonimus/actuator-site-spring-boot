@@ -123,6 +123,7 @@
                             <phase>${actuator.site.test.phase}</phase>
                             <configuration>
                                 <arguments>test</arguments>
+                                <maven.test.failure.ignore>true</maven.test.failure.ignore>
                             </configuration>
                         </execution>
                     </executions>
