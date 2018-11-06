@@ -8,4 +8,4 @@ addons:
 install: true
 
 script:
-- mvn clean install -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+- mvn clean install -B -DskipFrontTests -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
