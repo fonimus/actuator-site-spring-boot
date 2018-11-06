@@ -25,6 +25,7 @@
         <actuator.site.build.phase>process-resources</actuator.site.build.phase>
         <actuator.site.test.phase>test</actuator.site.test.phase>
         <skipFront>false</skipFront>
+        <skipFrontTests>${skipFront}</skipFrontTests>
     </properties>
 
     <dependencies>
@@ -123,6 +124,7 @@
                             <phase>${actuator.site.test.phase}</phase>
                             <configuration>
                                 <arguments>test</arguments>
+                                <skip>${skipFrontTests}</skip>
                             </configuration>
                         </execution>
                     </executions>
